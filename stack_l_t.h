@@ -1,6 +1,6 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
+// AUTOR: Omar Suárez Doro
+// FECHA: 02-05-2022
+// EMAIL: alu0101483474@ull.edu.es
 // VERSION: 2.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // TEMA: 5
@@ -40,27 +40,50 @@ private:
 
 
 // operaciones
+/**
+ * @brief This method push a data into a stack
+ * @param dato : Data
+ */
 template<class T> void stack_l_t<T>::push(const T& dato) {
   dll_node_t<T>* nodo = new dll_node_t<T>(dato);
   assert(nodo != NULL);
   l_.push_front(nodo);
 }
 
+/**
+ * @brief This method delete the top of a stack 
+ */
 template<class T> void stack_l_t<T>::pop(void) {
   assert(!empty());
   delete l_.pop_front();
 }
 
+/**
+ * @brief This method return the top of the stack
+ * @return const T& 
+ */
 template<class T> const T& stack_l_t<T>::top(void) const {
   assert(!empty());
   return l_.get_head()->get_data();
 }
 
+/**
+ * @brief This method check if a stack is empty or not. 
+ * @return true 
+ * @return false 
+ */
 template<class T> bool stack_l_t<T>::empty(void) const {
   return l_.empty();
 }
 
 // E/S
+
+/**
+ * @brief This method allow user to print a stack on the screen 
+ * @tparam T 
+ * @param os 
+ * @return std::ostream& 
+ */
 template<class T> std::ostream& stack_l_t<T>::write(std::ostream& os) const {
   dll_node_t<T>* aux = l_.get_head();
   while (aux != NULL) { 

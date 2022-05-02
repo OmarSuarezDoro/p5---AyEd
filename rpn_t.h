@@ -1,9 +1,9 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
+// AUTOR: Omar Suárez Doro
+// FECHA: 02-05-2022
+// EMAIL: alu0101483474@ull.edu.es
 // VERSION: 2.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
-// PRÁCTICA Nº: 5
+// TEMA: 6
 // ESTILO: Google C++ Style Guide
 // COMENTARIOS: Clase RPN (Reverse Polish Notation)
 
@@ -36,6 +36,11 @@ template <class T> class rpn_t {
 
 
 // operaciones
+/**
+ * @brief This method evaluate a data value in the polynomial
+ * @param q : Data 
+ * @return const int 
+ */
 template<class T> const int rpn_t<T>::evaluate(queue_l_t<char>& q) {
   while (!q.empty()) 	{
     char c = q.front();
@@ -56,6 +61,10 @@ template<class T> const int rpn_t<T>::evaluate(queue_l_t<char>& q) {
   // poner código
 }
 
+/**
+ * @brief This mehod operate with sign 
+ * @param c : Signs
+ */
 template<class T> void rpn_t<T>::operate_(const char c) {
   assert(c == '+' || c == '-' || c == '*' || c == '/');
 

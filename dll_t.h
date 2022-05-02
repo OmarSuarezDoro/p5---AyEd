@@ -1,6 +1,6 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
+// AUTOR: Omar Suárez Doro
+// FECHA: 02-05-2022
+// EMAIL: alu0101483474@ull.edu.es
 // VERSION: 2.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // TEMA: 4
@@ -62,6 +62,12 @@ template <class T> dll_t<T>::~dll_t(void) {
 }
 
 // Comprobar si lista vacía
+
+/**
+ * @brief This method check if a list is empty
+ * @return true 
+ * @return false 
+ */
 template <class T> bool dll_t<T>::empty(void) const {
   if (head_ == NULL) {
     assert(tail_ == NULL);
@@ -72,6 +78,11 @@ template <class T> bool dll_t<T>::empty(void) const {
 }
 
 // operaciones
+
+/**
+ * @brief This method allow user to push a node from front
+ * @param nodo : Is the node that will be inserted
+ */
 template <class T> void dll_t<T>::push_front(dll_node_t<T>* nodo) {
   assert(nodo != NULL);
 
@@ -86,6 +97,10 @@ template <class T> void dll_t<T>::push_front(dll_node_t<T>* nodo) {
   sz_++;
 }
 
+/**
+ * @brief This method allow user to push a node from back
+ * @param nodo : Is the node that will be inserted
+ */
 template <class T> void dll_t<T>::push_back(dll_node_t<T>* nodo) {
   assert(nodo != NULL);
 
@@ -100,6 +115,11 @@ template <class T> void dll_t<T>::push_back(dll_node_t<T>* nodo) {
   sz_++;
 }
 
+
+/**
+ * @brief This method return the node that is in the end of a list
+ * @return dll_node_t<T>* 
+ */
 template <class T> dll_node_t<T>* dll_t<T>::pop_back(void) {
   assert(!empty());
 
@@ -115,6 +135,11 @@ template <class T> dll_node_t<T>* dll_t<T>::pop_back(void) {
   return aux;
 }
 
+
+/**
+ * @brief This method return the node that is in the front of a list
+ * @return dll_node_t<T>* 
+ */
 template <class T> dll_node_t<T>* dll_t<T>::pop_front(void) {
   assert(!empty());
 
@@ -130,6 +155,12 @@ template <class T> dll_node_t<T>* dll_t<T>::pop_front(void) {
   return aux;
 }
 
+
+/**
+ * @brief This method erase a node 
+ * @param nodo : Is the node that will be erased
+ * @return dll_node_t<T>* 
+ */
 template <class T> dll_node_t<T>* dll_t<T>::erase(dll_node_t<T>* nodo) {
   assert(nodo != NULL);
 
@@ -148,6 +179,11 @@ template <class T> dll_node_t<T>* dll_t<T>::erase(dll_node_t<T>* nodo) {
 }
 
 // E/S
+/**
+ * @brief This method allow user to print the list on the screen 
+ * @param os : Is the output stream 
+ * @return std::ostream& 
+ */
 template <class T> std::ostream& dll_t<T>::write(std::ostream& os) const {
   dll_node_t<T>* aux = head_;
 
