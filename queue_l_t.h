@@ -18,7 +18,7 @@
 // Clase TAD cola implementada con una lista
 template <class T> class queue_l_t {
  private:
-  dll_t<T>    l_;
+  dll_t<T> l_;
 
  public:
   // constructor

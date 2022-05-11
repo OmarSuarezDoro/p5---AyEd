@@ -30,6 +30,12 @@ template<class T> class stack_l_t {
   void pop(void);
   const T& top(void) const;
   bool empty(void) const;
+  int number_of_pairs() const;
+  int size_of_stack() const;
+  int sum_of_elements() const;
+  int max() const;
+
+
 
   // E/S	
   std::ostream& write(std::ostream& os = std::cout) const;
@@ -93,6 +99,68 @@ template<class T> std::ostream& stack_l_t<T>::write(std::ostream& os) const {
   os << " └─────┘" << std::endl;
   return os;
 }
+
+/*
+Métodos a implementar - Práctica 5 AyED:
+  -PILA-
+    - Método que te diga el número de pares que tiene una pila
+    - Método que te diga el número de impares que tiene una pila
+    - Método que te diga el tamaño de una pila
+    - Método que te sume todos los elementos de una pila
+    - Método que te diga el valor más alto dentro de una pila
+    - Método que te diga el valor más bajo dentro de una pila
+    - Método que te separe en dos pilas distintas, los números mayores y menores dado un parámetro de entrada
+  */
+template <class T>
+int stack_l_t<T>::number_of_pairs() const {
+  stack_l_t<int>* aux_stack = new stack_l_t<int>;
+  int counter_of_pairs{0};
+  while (!empty()) {
+    if (top() % 2 == 0) {counter_of_pairs++};
+    aux_stack->push(top());
+    pop();
+  }
+  while (!empty()) {
+    push(aux_stack->top());
+    aux_stack->pop();
+  }
+  return counter_of_pairs;
+}
+
+template <class T>
+int stack_l_t<T>::size_of_stack() const {
+  return l_.get_size();
+}
+
+template <class T>
+int stack_l_t<T>::sum_of_elements() const {
+  stack_l_t<int>* aux_stack = new stack_l_t<int>;
+  int counter{0};
+  while (!empty()) {
+    counter += top();
+    aux_stack->push(top());
+    pop();
+  }
+  while (!empty()) {
+    push(aux_stack->top());
+    aux_stack->pop();
+  }
+  return counter;
+}
+
+
+template <class T>
+int stack_l_t<T>::max() const {
+  stack_l_t<int>* aux_stack = new stack_l_t<int>;
+  int max = top();
+  aux_stack = this*;
+  while (!aux_stacl->empty()) {
+    if (aux_stack->top() > max) {max = aux_stack->top();}
+    aux_stack->pop();
+  }
+  return max;
+}
+
 
 
 #endif  // STACKL_H_
