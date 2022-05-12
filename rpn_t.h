@@ -13,7 +13,7 @@
 #include <iostream>
 #include <cctype>
 #include <cmath>
-//#include <cstdlib>
+#include <cstdlib>
 
 #include "queue_l_t.h"
 
@@ -44,22 +44,18 @@ template <class T> class rpn_t {
 template<class T> const int rpn_t<T>::evaluate(queue_l_t<char>& q) {
   while (!q.empty()) 	{
     char c = q.front();
-    
     q.pop();
     std::cout << "Sacamos de la cola un carácter: " << c;
-
     if (isdigit(c)) {
       int i = c - '0';
-      std::cout << i;
-      std::cout << " (es un dígito) " << std::endl
-		  << "   Lo metemos en la pila..." << std::endl;
+      std::cout << " (es un dígito)\n" << "   Lo metemos en la pila..." << std::endl;
+      this->stack_.push(i);
     } else {
-      std::cout << c;
       std::cout << " (es un operador)" << std::endl;
       operate_(c);
     }
   }
-  // poner código
+  return this->stack_.top();
 }
 
 /**
@@ -67,22 +63,27 @@ template<class T> const int rpn_t<T>::evaluate(queue_l_t<char>& q) {
  * @param c : Signs
  */
 template<class T> void rpn_t<T>::operate_(const char c) {
-  assert(c == '+' || c == '-' || c == '*' || c == '/');
+  assert(c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == 'r' || c == 'c' || c == 'l');
  
-  T op1 = q.pop();
+  int op1 = this->stack_.top();
+  this->stack_.pop();
   std::cout << "   Sacamos de la pila un operando: " << op1 << std::endl;
+  int op2;
+  if (c == 'l' | c == 'c' || c == 'r') {
+    op2 = this->stack_.top(); 
+    this->stack_.pop();
+    std::cout << "   Sacamos de la pila otro operando: " << op2 << std::endl;
+  } 
+    
   
-  T op2 = q.pop();  
-  std::cout << "   Sacamos de la pila otro operando: " << op2 << std::endl;
-  T result;
+  int result;
   switch (c) {
     case '+': 
       result = op1 + op2;
-      q.push(result);
     break;
     
     case '-': 
-      result = op1 - op2;
+      op1 > op2 ? result = op1 - op2 : result = op2 - op1;
     break;
 
     case '*':
@@ -92,10 +93,26 @@ template<class T> void rpn_t<T>::operate_(const char c) {
     case '/': 
       result = op1 / op2;
     break;
+
+    case '^':
+      result = pow(op1, op2);
+    break;
+
+    case 'r':
+      result = sqrt(op1);
+    break;
+
+    case 'l':
+      result = log2(op1);
+    break;
+
+    case 'c':
+      result = op1 * op1;
+    break;
   }
 
-  std::cout << "   Metemos en la pila el resultado: "<< result << std::endl;
-  q.push(result);
+  std::cout << "   Metemos en la pila el resultado: " << result << std::endl;
+  this->stack_.push(result);
 }
 
  
