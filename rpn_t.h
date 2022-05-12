@@ -69,7 +69,7 @@ template<class T> void rpn_t<T>::operate_(const char c) {
   this->stack_.pop();
   std::cout << "   Sacamos de la pila un operando: " << op1 << std::endl;
   int op2;
-  if (c == 'l' | c == 'c' || c == 'r') {
+  if (c != 'l' || c != 'c' || c != 'r') {
     op2 = this->stack_.top(); 
     this->stack_.pop();
     std::cout << "   Sacamos de la pila otro operando: " << op2 << std::endl;
@@ -79,23 +79,23 @@ template<class T> void rpn_t<T>::operate_(const char c) {
   int result;
   switch (c) {
     case '+': 
-      result = op1 + op2;
+      result = op2 + op1;
     break;
     
     case '-': 
-      op1 > op2 ? result = op1 - op2 : result = op2 - op1;
+      result = op2 - op1;
     break;
 
     case '*':
-      result = op1 * op2;
+      result = op2 * op1;
     break;
 
     case '/': 
-      result = op1 / op2;
+      result = op2 / op1;
     break;
 
     case '^':
-      result = pow(op1, op2);
+      result = pow(op2, op1);
     break;
 
     case 'r':
